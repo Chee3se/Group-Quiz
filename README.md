@@ -1,1 +1,1 @@
-Simple quiz made in a collaborative manner.
+Simple quiz made in a collaborative manner. - Quizy
