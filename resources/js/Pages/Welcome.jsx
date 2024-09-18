@@ -32,7 +32,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         </Link>
                                         <Link
                                             href={route('register')}
-                                            className="rounded-md py-2 px-4 text-white bg-black rounded-3xl ring-1 ring-transparent transition focus:outline-none focus-visible:ring-[#FF2D20] "
+                                            className="rounded-md py-2 px-4 text-white bg-black ring-1 ring-transparent transition focus:outline-none focus-visible:ring-[#FF2D20] "
                                         >
                                             Register
                                         </Link>
