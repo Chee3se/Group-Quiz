@@ -22,10 +22,6 @@ export default function Layout({ children }) {
                             Profile
                             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gray-800 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-bottom-right"></span>
                         </Link>
-                        <Link href="/about" className="text-gray-800 hover:text-gray-600 relative group">
-                            About
-                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gray-800 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-bottom-right"></span>
-                        </Link>
                         {user ? (
                             <Link href="/logout" className="text-gray-800 hover:text-gray-600 relative group">
                                 Logout
