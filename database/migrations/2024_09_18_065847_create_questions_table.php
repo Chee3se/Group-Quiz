@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('title');
+            $table->foreignId('quiz_id')->constrained()->cascadeOnDelete();
+        
+
         });
     }
 
