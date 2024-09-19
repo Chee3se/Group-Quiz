@@ -8,7 +8,8 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 {/* <!-- Navigation --> */}
                 <nav className="fixed flex justify-between py-6 w-full lg:px-48 md:px-12 px-4 content-center bg-secondary z-10">
                 <div className="flex items-center space-x-2">
-                        <img src="favicon.ico" alt="Favicon" className="h-8 w-8" />
+                                <img src="favicon.ico" alt="Favicon" className="h-8 w-8" />
+                        
                     </div>
 
                     <div className="font-montserrat hidden md:block">
