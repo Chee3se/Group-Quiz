@@ -5,7 +5,7 @@ export default function Layout({ children }) {
     const user = usePage().props.auth.user;
 
     return (
-        <div className="relative min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 overflow-hidden">
+        <>
             <nav className="bg-transparent p-4 border-b border-gray-300">
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="flex items-center space-x-2">
