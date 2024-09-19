@@ -12,7 +12,7 @@ class Score extends Model
     protected $fillable = [
         'title',
         'description',
-        'user_id',
+        'user_id', 
     ];
 
 
