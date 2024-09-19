@@ -12,6 +12,12 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+Route::get('/quiz', function () {
+    return Inertia::render('Quiz/Index', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
+})->name('quizs');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
