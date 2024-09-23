@@ -17,7 +17,7 @@ export default function Layout({ children }) {
                     <div className={`flex-1 flex justify-center space-x-4 ${!user ? 'ml-20' : 'mr-8'}`}>
                         <div className="flex justify-center space-x-4">
 
-                            <Link href="/home" className={`text-gray-800 relative group ${url === '/' ? 'hover:text-gray-600' : 'hover:text-gray-600'}`}>
+                            <Link href="/" className={`text-gray-800 relative group ${url === '/' ? 'hover:text-gray-600' : 'hover:text-gray-600'}`}>
                                 Home
                                 <span className={`absolute left-0 bottom-0 w-full h-0.5 ${url === '/' ? 'bg-yellow-600' : 'bg-yellow-600 transform scale-x-0'} group-hover:scale-x-100 transition-transform origin-bottom-right`}></span>
                             </Link>
