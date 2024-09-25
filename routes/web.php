@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -12,12 +13,10 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/quiz', function () {
-    return Inertia::render('Quiz/Index', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-    ]);
-})->name('quizs');
+Route::middleware('auth')->group(function () {
+    Route::get('/quiz', [QuizController::class, 'index'])->name('quiz.index');
+    Route::get('/quizzes/{id}', [QuizController::class, 'show'])->name('quizzes.show');
+});
 
 Route::get('/admin', function () {
     return Inertia::render('Quiz/Admin', [
