@@ -6,7 +6,7 @@ export default function Layout({ children, role }) {
 
     return (
         <>
-            <nav className="bg-transparent p-4 border-b border-gray-300">
+            <nav className="bg-transparent p-4 border-b border-gray-500">
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="flex items-center space-x-2">
                         <img src="favicon.ico" alt="Favicon" className="h-8 w-8" />
