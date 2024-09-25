@@ -2,10 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Answer;
-use App\Models\Question;
 use App\Models\Quiz;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class QuizSeeder extends Seeder
@@ -15,23 +12,13 @@ class QuizSeeder extends Seeder
      */
     public function run(): void
     {
-        Quiz::create([
-            'title'=>'Movies'
+        $quiz = Quiz::create(['title' => 'Movies']);
+
+        $quiz->addQuestion('What is the highest-grossing movie of all time?', [
+            'Avatar' => true,
+            'Titanic' => false,
+            'Star Wars: The Force Awakens' => false,
+            'Avengers: Endgame' => false,
         ]);
-        Question::create([
-            'title'=>'What is the highest-grossing movie of all time?',
-            'quiz_id'=>1
-
-        ]);
-
-        Answer::create([
-            'content'=>'Avatar',
-            'question_id'=>1,
-            'is_correct'=>true,
-        ]);
-
-
-    
-}
-
+    }
 }

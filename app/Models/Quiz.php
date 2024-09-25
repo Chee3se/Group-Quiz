@@ -20,10 +20,19 @@ class Quiz extends Model
         return $this->hasMany(Question::class);
     }
 
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
+
+    public function addQuestion(string $questionTitle, array $answerTitles = [])
+    {
+        $question = $this->questions()->create(['title' => $questionTitle]);
+
+        foreach ($answerTitles as $title => $isCorrect) {
+            $question->answers()->create(['title' => $title, 'is_correct' => $isCorrect]);
+        }
+
+        return $question;
+    }
 }

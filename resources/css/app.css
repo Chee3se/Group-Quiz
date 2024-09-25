@@ -12,3 +12,19 @@
 body {
     font-family: 'Inter', sans-serif;
 }
+
+.waves-container .shape-fill {
+    animation: waveColorTransition 10s infinite alternate;
+}
+
+@keyframes waveColorTransition {
+    0% {
+        fill: #FFFFFF;
+    }
+    50% {
+        fill: #FFDDC1;
+    }
+    100% {
+        fill: #FFFFFF;
+    }
+}

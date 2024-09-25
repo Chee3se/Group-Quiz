@@ -14,7 +14,6 @@ class Question extends Model
         'quiz_id',
     ];
 
-
     public function answers()
     {
         return $this->hasMany(Answer::class);
@@ -25,5 +24,11 @@ class Question extends Model
         return $this->belongsTo(Quiz::class);
     }
 
+    public function addAnswers(array $answerTitles)
+    {
+        foreach ($answerTitles as $title => $isCorrect) {
+            $this->answers()->create(['title' => $title, 'is_correct' => $isCorrect]);
+        }
+    }
 }
 
