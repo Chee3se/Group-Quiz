@@ -16,6 +16,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/quiz', [QuizController::class, 'index'])->name('quiz.index');
     Route::get('/quizzes/{id}', [QuizController::class, 'show'])->name('quizzes.show');
+    Route::post('/quizzes/saveScore', [QuizController::class, 'saveScore'])->name('quizzes.saveScore');
 });
 
 Route::get('/admin', function () {

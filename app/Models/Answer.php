@@ -16,6 +16,10 @@ class Answer extends Model
         'is_correct',
     ];
 
+    protected $hidden = [
+        'is_correct',
+    ];
+
     public function question()
     {
         return $this->belongsTo(Question::class);
