@@ -22,4 +22,4 @@ class QuizController extends Controller
         return Inertia::render('Quiz/Show', ['quiz' => $quiz]);
     }
 
-}
+}   
