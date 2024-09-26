@@ -14,7 +14,7 @@ export default function Index({ auth, quizzes }) {
                 <h1 className="text-6xl font-extrabold bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 text-transparent bg-clip-text mb-12 text-center">
                     Quiz Selection
                 </h1>
-                <div className="w-[90%] md:w-[75%] lg:w-[60%] bg-white rounded-xl shadow-lg p-6">
+                <div className="w-[90%] md:w-[75%] lg:w-[60%] from-pink-500 to-indigo-500 rounded-xl shadow-lg p-6">
                     <div className="grid grid-cols-1 gap-6">
                         {quizzes.map((quiz, index) => (
                             <Link href={route('quizzes.show', {"id": quiz.id})} as="button" key={quiz.id} className={`bg-gray-100 border-2 border-gray-200 rounded-lg p-6 hover:bg-purple-400 hover:text-white transition duration-300`}>
