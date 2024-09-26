@@ -12,20 +12,73 @@ class QuizController extends Controller
 {
     public function index(): Response
     {
-        //return the quizzes alongside the lenght of each quiz's questions
         $quizzes = Quiz::withCount('questions')->get();
         return Inertia::render('Quiz/Index', ['quizzes' => $quizzes]);
     }
 
+    public function create(): Response
+    {
+        return Inertia::render('Quiz/Create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $quiz = Quiz::create([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('quiz.index')->with('success', 'Quiz created successfully!');
+    }
+
     public function show($id): Response
     {
+<<<<<<< HEAD
+        $quiz = Quiz::with('questions.answers')->findOrFail($id);
+=======
         $quiz = Quiz::with(['questions' => function($query) {
             $query->inRandomOrder()->with(['answers' => function($query) {
                 $query->inRandomOrder();
             }]);
         }])->findOrFail($id);
 
+>>>>>>> 729e1996681172e0ae4e3ae0431964533476c907
         return Inertia::render('Quiz/Show', ['quiz' => $quiz]);
+    }
+
+    public function edit($id): Response
+    {
+        $quiz = Quiz::findOrFail($id);
+        return Inertia::render('Quiz/Edit', ['quiz' => $quiz]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $quiz = Quiz::findOrFail($id);
+        $quiz->update([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('quiz.index')->with('success', 'Quiz updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $quiz = Quiz::findOrFail($id);
+        $quiz->delete();
+
+        return redirect()->route('quiz.index')->with('success', 'Quiz deleted successfully!');
     }
 
     public function saveScore(Request $request)
@@ -59,5 +112,4 @@ class QuizController extends Controller
             'total' => $quiz->questions->count()
         ]);
     }
-
 }
