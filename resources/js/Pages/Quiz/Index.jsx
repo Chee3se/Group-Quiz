@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Layout from "@/Layouts/Layout.jsx";
+import Waves from "@/Components/Waves.jsx";
 
 export default function Index({ auth, quizzes }) {
     console.log(quizzes);
@@ -8,6 +9,7 @@ export default function Index({ auth, quizzes }) {
     return (
         <Layout auth={auth}>
             <Head title="Quizzes" />
+            <Waves/>
             <div className="w-full container mx-auto flex flex-col items-center justify-center mt-10 py-8">
                 <h1 className="text-6xl font-extrabold bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 text-transparent bg-clip-text mb-12 text-center">
                     Quiz Selection
