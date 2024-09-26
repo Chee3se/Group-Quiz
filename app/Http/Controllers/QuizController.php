@@ -38,16 +38,14 @@ class QuizController extends Controller
 
     public function show($id): Response
     {
-<<<<<<< HEAD
         $quiz = Quiz::with('questions.answers')->findOrFail($id);
-=======
+
         $quiz = Quiz::with(['questions' => function($query) {
             $query->inRandomOrder()->with(['answers' => function($query) {
                 $query->inRandomOrder();
             }]);
         }])->findOrFail($id);
 
->>>>>>> 729e1996681172e0ae4e3ae0431964533476c907
         return Inertia::render('Quiz/Show', ['quiz' => $quiz]);
     }
 
