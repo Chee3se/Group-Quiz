@@ -5,7 +5,7 @@ import Waves from "@/Components/Waves.jsx";
 export default function Home({ auth }) {
 
     return (
-        <Layout>
+        <Layout auth={auth}>
             <Head title="Home"/>
             <Waves/>
             <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
