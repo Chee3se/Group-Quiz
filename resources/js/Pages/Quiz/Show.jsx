@@ -100,7 +100,7 @@ export default function Show({ quiz, auth }) {
                                     Retake Quiz
                                 </Link>
                                 <Link
-                                    href={route('quiz.index')}
+                                    href={route('quizzes.index')}
                                     className="bg-blue-500 text-white py-2 px-4 rounded-lg ml-4 hover:bg-blue-700 transition duration-300"
                                 >
                                     Choose Another Topic

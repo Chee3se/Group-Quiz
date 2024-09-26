@@ -14,9 +14,18 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/quiz', [QuizController::class, 'index'])->name('quiz.index');
+    Route::get('/quiz', [QuizController::class, 'index'])->name('quizzes.index');
     Route::get('/quizzes/{id}', [QuizController::class, 'show'])->name('quizzes.show');
     Route::post('/quizzes/saveScore', [QuizController::class, 'saveScore'])->name('quizzes.saveScore');
+
+    //CRUD
+
+    Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
+    Route::post('/quizzes', [QuizController::class, 'store'])->name('quizzes.store');
+    Route::get('/quizzes/{id}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
+    Route::patch('/quizzes/{id}', [QuizController::class, 'update'])->name('quizzes.update');
+    Route::delete('/quizzes/{id}', [QuizController::class, 'destroy'])->name('quizzes.destroy');
+
 });
 
 Route::get('/admin', function () {

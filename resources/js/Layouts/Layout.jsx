@@ -21,7 +21,7 @@ export default function Layout({ children, role }) {
                                 Home
                                 <span className={`absolute left-0 bottom-0 w-full h-0.5 ${url === '/' ? 'bg-gray-800' : 'bg-gray-800 transform scale-x-0'} group-hover:scale-x-100 transition-transform origin-bottom-right`}></span>
                             </Link>
-                            <Link href={route("quiz.index")} className={`text-gray-800 relative group ${url === '/quiz' ? 'hover:text-gray-600' : 'hover:text-gray-600'}`}>
+                            <Link href={route("quizzes.index")} className={`text-gray-800 relative group ${url === '/quiz' ? 'hover:text-gray-600' : 'hover:text-gray-600'}`}>
                                     Quizes
                                 <span className={`absolute left-0 bottom-0 w-full h-0.5 ${url === '/quiz' ? 'bg-gray-800' : 'bg-gray-800 transform scale-x-0'} group-hover:scale-x-100 transition-transform origin-bottom-right`}></span>
                             </Link>
