@@ -19,7 +19,11 @@ class QuizController extends Controller
 
     public function show($id): Response
     {
-        $quiz = Quiz::with('questions.answers')->findOrFail($id);
+        $quiz = Quiz::with(['questions' => function($query) {
+            $query->inRandomOrder()->with(['answers' => function($query) {
+                $query->inRandomOrder();
+            }]);
+        }])->findOrFail($id);
 
         return Inertia::render('Quiz/Show', ['quiz' => $quiz]);
     }
@@ -37,7 +41,7 @@ class QuizController extends Controller
 
         foreach ($quiz->questions as $question) {
             foreach ($question->answers as $answer) {
-                if ($answer->is_correct && in_array($answer->id, $request->answers)) {
+                if ($answer->is_correct && in_array(['question_id' => $question->id, 'answer_id' => $answer->id], $request->answers)) {
                     $score++;
                 }
             }

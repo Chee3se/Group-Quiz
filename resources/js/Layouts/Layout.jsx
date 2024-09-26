@@ -19,17 +19,17 @@ export default function Layout({  auth, children }) {
 
                             <Link href="/" className={`text-gray-800 relative group ${url === '/' ? 'hover:text-gray-600' : 'hover:text-gray-600'}`}>
                                 Home
-                                <span className={`absolute left-0 bottom-0 w-full h-0.5 ${url === '/' ? 'bg-yellow-600' : 'bg-yellow-600 transform scale-x-0'} group-hover:scale-x-100 transition-transform origin-bottom-right`}></span>
+                                <span className={`absolute left-0 bottom-0 w-full h-0.5 ${url === '/' ? 'bg-gray-800' : 'bg-gray-800 transform scale-x-0'} group-hover:scale-x-100 transition-transform origin-bottom-right`}></span>
                             </Link>
                             <Link href="/quiz" className={`text-gray-800 relative group ${url === '/quiz' ? 'hover:text-gray-600' : 'hover:text-gray-600'}`}>
                                     Quizes
-                                <span className={`absolute left-0 bottom-0 w-full h-0.5 ${url === '/quiz' ? 'bg-yellow-600' : 'bg-gray-800 transform scale-x-0'} group-hover:scale-x-100 transition-transform origin-bottom-right`}></span>
+                                <span className={`absolute left-0 bottom-0 w-full h-0.5 ${url === '/quiz' ? 'bg-gray-800' : 'bg-gray-800 transform scale-x-0'} group-hover:scale-x-100 transition-transform origin-bottom-right`}></span>
                             </Link>
                             {user && (
                                 <>
                                 <Link href="/profile" className={`text-gray-800 relative group ${url === '/profile' ? 'hover:text-gray-600' : 'hover:text-gray-600'}`}>
                                     Profile
-                                    <span className={`absolute left-0 bottom-0 w-full h-0.5 ${url === '/profile' ? 'bg-yellow-600' : 'bg-gray-800 transform scale-x-0'} group-hover:scale-x-100 transition-transform origin-bottom-right`}></span>
+                                    <span className={`absolute left-0 bottom-0 w-full h-0.5 ${url === '/profile' ? 'bg-gray-800' : 'bg-gray-800 transform scale-x-0'} group-hover:scale-x-100 transition-transform origin-bottom-right`}></span>
                                 </Link>
                                 
                                 </>

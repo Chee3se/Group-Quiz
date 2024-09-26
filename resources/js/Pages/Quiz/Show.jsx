@@ -16,7 +16,7 @@ export default function Show({ quiz, auth }) {
 
     const handleAnswerClick = (answerId) => {
         setSelectedAnswers((prev) => {
-            const newAnswers = [...prev, answerId];
+            const newAnswers = [...prev, { question_id: currentQuestion.id, answer_id: answerId }];
             if (currentQuestionIndex < totalQuestions - 1) {
                 setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
             } else {
