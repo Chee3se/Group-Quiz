@@ -60,7 +60,7 @@ class QuizController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Quiz/Create');
     }
