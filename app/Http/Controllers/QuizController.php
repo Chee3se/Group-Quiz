@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Quiz;
 use App\Models\Score;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -21,7 +22,7 @@ class QuizController extends Controller
     {
         $quiz = Quiz::with(['questions' => function($query) {
             $query->inRandomOrder()->with(['answers' => function($query) {
-                $query->inRandomOrder();
+                $query->inRandomOrder()->select('id', 'title', 'question_id'); // Exclude 'is_correct'
             }]);
         }])->findOrFail($id);
 
@@ -65,7 +66,7 @@ class QuizController extends Controller
         return Inertia::render('Quiz/Create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'title' => 'required|string',
@@ -80,7 +81,12 @@ class QuizController extends Controller
 
         foreach ($request->questions as $question) {
             $newQuestion = $quiz->questions()->create(['title' => $question['title']]);
-            $newQuestion->addAnswers($question['answers']);
+            foreach ($question['answers'] as $answer) {
+                $newQuestion->answers()->create([
+                    'title' => $answer['title'],
+                    'is_correct' => (bool) $answer['is_correct'], // Ensure is_correct is a boolean
+                ]);
+            }
         }
 
         return redirect()->route('quizzes.index');
@@ -88,11 +94,13 @@ class QuizController extends Controller
 
     public function edit($id)
     {
-        $quiz = Quiz::with('questions.answers')->findOrFail($id);
+        $quiz = Quiz::with(['questions.answers' => function($query) {
+            $query->select('id', 'title', 'question_id', 'is_correct');
+        }])->findOrFail($id);
         return Inertia::render('Quiz/Edit', ['quiz' => $quiz]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): RedirectResponse
     {
         $request->validate([
             'title' => 'required|string',
@@ -106,10 +114,26 @@ class QuizController extends Controller
         $quiz = Quiz::findOrFail($id);
         $quiz->update(['title' => $request->title]);
 
-        foreach ($request->questions as $question) {
-            $newQuestion = $quiz->questions()->updateOrCreate(['title' => $question['title']]);
-            $newQuestion->answers()->delete();
-            $newQuestion->addAnswers($question['answers']);
+        // Get the IDs of the questions in the request
+        $requestQuestionIds = collect($request->questions)->pluck('id')->filter()->toArray();
+
+        // Delete questions that are not in the request
+        $quiz->questions()->whereNotIn('id', $requestQuestionIds)->delete();
+
+        foreach ($request->questions as $questionData) {
+            $question = $quiz->questions()->updateOrCreate(
+                ['id' => $questionData['id'] ?? null],
+                ['title' => $questionData['title']]
+            );
+
+            $question->answers()->delete();
+
+            foreach ($questionData['answers'] as $answerData) {
+                $question->answers()->create([
+                    'title' => $answerData['title'],
+                    'is_correct' => (bool) $answerData['is_correct'],
+                ]);
+            }
         }
 
         return redirect()->route('quizzes.index');
