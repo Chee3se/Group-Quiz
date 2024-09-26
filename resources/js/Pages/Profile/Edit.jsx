@@ -5,9 +5,9 @@ import UpdateProfileInformationForm from './Partials/UpdateProfileInformationFor
 import { Head } from '@inertiajs/react';
 import Layout from "@/Layouts/Layout.jsx";
 
-export default function Edit({ mustVerifyEmail, status }) {
+export default function Edit({ auth, mustVerifyEmail, status }) {
     return (
-        <Layout>
+        <Layout auth={auth}>
             <Head title="Profile" />
 
             <div className="py-12">

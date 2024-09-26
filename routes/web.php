@@ -28,12 +28,6 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::get('/admin', function () {
-    return Inertia::render('Quiz/Admin', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-    ]);
-})->name('admin');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
