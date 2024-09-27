@@ -11,24 +11,26 @@ use Inertia\Response;
 
 class QuizController extends Controller
 {
+    // Display a list of quizzes with the count of questions for each
     public function index(): Response
     {
-        //return the quizzes alongside the lenght of each quiz's questions
-        $quizzes = Quiz::withCount('questions')->get();
+        $quizzes = Quiz::withCount('questions')->with('scores.user')->get(); // Include scores and users
         return Inertia::render('Quiz/Index', ['quizzes' => $quizzes]);
     }
 
+    // Show details of a specific quiz including questions and answers
     public function show($id): Response
     {
         $quiz = Quiz::with(['questions' => function($query) {
             $query->inRandomOrder()->with(['answers' => function($query) {
                 $query->inRandomOrder()->select('id', 'title', 'question_id'); // Exclude 'is_correct'
             }]);
-        }])->findOrFail($id);
+        }, 'scores.user'])->findOrFail($id); // Load scores with users
 
         return Inertia::render('Quiz/Show', ['quiz' => $quiz]);
     }
 
+    // Save the score of a user for a quiz
     public function saveScore(Request $request)
     {
         $request->validate([
@@ -40,6 +42,7 @@ class QuizController extends Controller
         $quiz = Quiz::with('questions.answers')->findOrFail($request->quiz_id);
         $score = 0;
 
+        // Calculate score based on correct answers
         foreach ($quiz->questions as $question) {
             foreach ($question->answers as $answer) {
                 if ($answer->is_correct && in_array(['question_id' => $question->id, 'answer_id' => $answer->id], $request->answers)) {
@@ -48,6 +51,7 @@ class QuizController extends Controller
             }
         }
 
+        // Create a score record in the database
         Score::create([
             'score' => $score,
             'quiz_id' => $request->quiz_id,
@@ -57,10 +61,11 @@ class QuizController extends Controller
         return Inertia::render('Quiz/Show', [
             'quiz' => $quiz,
             'score' => $score,
-            'total' => $quiz->questions->count()
+            'total' => $quiz->questions->count(),
         ]);
     }
 
+    // Render the form to create a new quiz
     public function create(): Response
     {
         return Inertia::render('Quiz/Create');
@@ -89,10 +94,19 @@ class QuizController extends Controller
             }
         }
 
-        return redirect()->route('quizzes.index');
+        return redirect()->route('quizzes.index')->with('success', 'Quiz created successfully!');
     }
 
-    public function edit($id)
+    public function getHighScores($id)
+{
+    // Fetch the high scores for a specific quiz, ordered by score descending
+    $scores = Score::with('user')->where('quiz_id', $id)->orderBy('score', 'desc')->take(10)->get(); // Fetch top 10 scores
+
+    return response()->json(['scores' => $scores]);
+}
+
+    // Render the form to edit an existing quiz
+    public function edit($id): Response
     {
         $quiz = Quiz::with(['questions.answers' => function($query) {
             $query->select('id', 'title', 'question_id', 'is_correct');
@@ -113,7 +127,7 @@ class QuizController extends Controller
 
         $quiz = Quiz::findOrFail($id);
         $quiz->update(['title' => $request->title]);
-
+      
         // Get the IDs of the questions in the request
         $requestQuestionIds = collect($request->questions)->pluck('id')->filter()->toArray();
 
@@ -136,12 +150,13 @@ class QuizController extends Controller
             }
         }
 
-        return redirect()->route('quizzes.index');
+        return redirect()->route('quizzes.index')->with('success', 'Quiz updated successfully!');
     }
 
+    // Delete a quiz from the database
     public function destroy($id)
     {
         Quiz::destroy($id);
-        return redirect()->route('quizzes.index');
+        return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully!');
     }
 }
