@@ -51,12 +51,24 @@ class QuizController extends Controller
             }
         }
 
-        // Create a score record in the database
-        Score::create([
-            'score' => $score,
-            'quiz_id' => $request->quiz_id,
-            'user_id' => $request->user_id,
-        ]);
+        // Check if the user already has a score for this quiz
+        $existingScore = Score::where('quiz_id', $request->quiz_id)
+            ->where('user_id', $request->user_id)
+            ->first();
+
+        if ($existingScore) {
+            // If the new score is higher, update the existing score
+            if ($score > $existingScore->score) {
+                $existingScore->update(['score' => $score]);
+            }
+        } else {
+            // If no existing score, create a new score record
+            Score::create([
+                'score' => $score,
+                'quiz_id' => $request->quiz_id,
+                'user_id' => $request->user_id,
+            ]);
+        }
 
         return Inertia::render('Quiz/Show', [
             'quiz' => $quiz,
@@ -127,7 +139,7 @@ class QuizController extends Controller
 
         $quiz = Quiz::findOrFail($id);
         $quiz->update(['title' => $request->title]);
-      
+
         // Get the IDs of the questions in the request
         $requestQuestionIds = collect($request->questions)->pluck('id')->filter()->toArray();
 
