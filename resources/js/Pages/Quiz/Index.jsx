@@ -39,19 +39,35 @@ export default function Index({ auth, quizzes }) {
                 <h1 className="text-6xl font-extrabold bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 text-transparent bg-clip-text mb-12 text-center">
                     Quiz Selection
                 </h1>
-                <div className="w-[90%] md:w-[75%] lg:w-[60%] from-pink-500 to-indigo-500 rounded-xl shadow-lg p-6">
-                    <div className="grid grid-cols-1 gap-6">
-                        {quizzes.map((quiz) => (
-                            <div key={quiz.id}>
-                                {/* Clicking this button redirects to the quiz page */}
-                                <button
-                                    onClick={() => handleQuizClick(quiz.id)}
-                                    className="bg-gray-100 border-2 border-gray-200 rounded-lg p-6 hover:bg-purple-400 hover:text-white transition duration-300 w-full text-left"
-                                >
-                                    <div className="text-xl font-semibold">{quiz.title}</div>
-                                    <div className="text-sm mb-4">{`Question Count: ${quiz.questions_count}`}</div>
-                                </button>
-
+                <div className="w-[90%] md:w-[75%] lg:w-[60%] bg-white rounded-xl shadow-lg p-6 relative">
+                    {auth.role === 'admin' && (
+                        <Link
+                            href={route('quizzes.create')}
+                            className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 transition duration-300 z-20"
+                            style={{ boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }} // Add shadow for more emphasis
+                        >
+                            <span className="text-white text-4xl pb-1">+</span>
+                        </Link>
+                    )}
+                    <div className="grid grid-cols-1 gap-6 mt-12">
+                        {quizzes.map((quiz, index) => (
+                            <>
+                                <Link key={quiz.id} href={route('quizzes.show', {"id": quiz.id})} className="bg-gray-100 border-2 border-gray-200 rounded-lg p-6 hover:bg-purple-400 hover:text-white transition duration-300 flex justify-between items-center">
+                                    <div className="flex-1 text-center">
+                                        <div className="text-xl font-semibold">{`${quiz.title}`}</div>
+                                        <div className="text-sm mb-4">{`Question Count: ${quiz.questions_count}`}</div>
+                                    </div>
+                                    {auth.role === 'admin' && (
+                                        <div className="flex flex-col space-y-2">
+                                            <Link href={route('quizzes.edit', {"id": quiz.id})} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300 text-center">
+                                                Edit
+                                            </Link>
+                                            <button onClick={() => handleDelete(quiz.id)} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300 text-center">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    )}
+                                </Link>
                                 {/* High Scores Button */}
                                 <button
                                     onClick={() => handleHighScoresClick(quiz.id)}
@@ -66,33 +82,39 @@ export default function Index({ auth, quizzes }) {
                                         <h3 className="text-lg font-semibold mb-4">High Scores</h3>
                                         <table className="w-full table-auto">
                                             <thead>
-                                                <tr>
-                                                    <th className="px-4 py-2">Player</th>
-                                                    <th className="px-4 py-2">Score</th>
-                                                </tr>
+                                            <tr>
+                                                <th className="px-4 py-2">Player</th>
+                                                <th className="px-4 py-2">Score</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
-                                                {highScores[quiz.id].length > 0 ? (
-                                                    highScores[quiz.id].map(score => (
-                                                        <tr key={score.id}>
-                                                            <td className="border px-4 py-2">{score.user.name}</td>
-                                                            <td className="border px-4 py-2">{score.score}</td>
-                                                        </tr>
-                                                    ))
-                                                ) : (
-                                                    <tr>
-                                                        <td colSpan="2" className="text-center py-4">No scores yet</td>
+                                            {highScores[quiz.id].length > 0 ? (
+                                                highScores[quiz.id].map(score => (
+                                                    <tr key={score.id}>
+                                                        <td className="border px-4 py-2">{score.user.name}</td>
+                                                        <td className="border px-4 py-2">{score.score}</td>
                                                     </tr>
-                                                )}
+                                                ))
+                                            ) : (
+                                                <tr>
+                                                    <td colSpan="2" className="text-center py-4">No scores yet</td>
+                                                </tr>
+                                            )}
                                             </tbody>
                                         </table>
                                     </div>
                                 )}
-                            </div>
+                            </>
                         ))}
                     </div>
                 </div>
             </div>
         </Layout>
     );
+
+    function handleDelete(id) {
+        if (confirm('Are you sure you want to delete this quiz?')) {
+            // Add your delete logic here
+        }
+    }
 }
