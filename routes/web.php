@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/quizzes/{id}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
     Route::patch('/quizzes/{id}', [QuizController::class, 'update'])->name('quizzes.update');
     Route::delete('/quizzes/{id}', [QuizController::class, 'destroy'])->name('quizzes.destroy');
+    Route::get('/quizzes/{id}/high-scores', [QuizController::class, 'getHighScores'])->name('quizzes.high-scores');
 
 });
 
