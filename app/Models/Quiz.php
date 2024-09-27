@@ -24,6 +24,11 @@ class Quiz extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
+
     public function addQuestion(string $questionTitle, array $answerTitles = [])
     {
         $question = $this->questions()->create(['title' => $questionTitle]);
