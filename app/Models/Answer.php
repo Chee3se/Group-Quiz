@@ -9,14 +9,9 @@ class Answer extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
         'title',
         'question_id',
-        'is_correct',
-    ];
-
-    protected $hidden = [
         'is_correct',
     ];
 
@@ -24,6 +19,4 @@ class Answer extends Model
     {
         return $this->belongsTo(Question::class);
     }
-
 }
-
