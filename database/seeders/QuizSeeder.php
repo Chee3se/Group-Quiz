@@ -438,5 +438,113 @@ class QuizSeeder extends Seeder
         ]);
         
 
+        $quiz_games = Quiz::create(['title' => 'Video Games']);
+
+        $quiz_games->addQuestion('Which video game series features the character "Master Chief"?', [
+            'Call of Duty' => false,
+            'Halo' => true,
+            'Gears of War' => false,
+            'Battlefield' => false,
+        ]);
+        
+        $quiz_games->addQuestion('In which game would you find the location "Hyrule"?', [
+            'Final Fantasy' => false,
+            'The Legend of Zelda' => true,
+            'Dark Souls' => false,
+            'Elder Scrolls' => false,
+        ]);
+        
+        $quiz_games->addQuestion('Which company developed the video game "The Witcher 3: Wild Hunt"?', [
+            'Ubisoft' => false,
+            'CD Projekt Red' => true,
+            'Rockstar Games' => false,
+            'Bethesda' => false,
+        ]);
+        
+        $quiz_games->addQuestion('What is the name of the main protagonist in the "Uncharted" series?', [
+            'Nathan Drake' => true,
+            'Lara Croft' => false,
+            'John Marston' => false,
+            'Ezio Auditore' => false,
+        ]);
+        
+        $quiz_games->addQuestion('Which game popularized the battle royale genre?', [
+            'Fortnite' => false,
+            'PlayerUnknown’s Battlegrounds (PUBG)' => true,
+            'Apex Legends' => false,
+            'Call of Duty: Warzone' => false,
+        ]);
+        
+        $quiz_games->addQuestion('Which video game features a location called "Rapture"?', [
+            'Bioshock' => true,
+            'Half-Life' => false,
+            'Fallout' => false,
+            'Mass Effect' => false,
+        ]);
+        
+        $quiz_games->addQuestion('In which year was the original "Super Mario Bros." released?', [
+            '1980' => false,
+            '1985' => true,
+            '1990' => false,
+            '1995' => false,
+        ]);
+        
+        $quiz_games->addQuestion('Which video game features a character named "Geralt of Rivia"?', [
+            'Skyrim' => false,
+            'The Witcher' => true,
+            'Dragon Age' => false,
+            'Bloodborne' => false,
+        ]);
+        
+        $quiz_games->addQuestion('What is the name of the in-game currency used in "League of Legends"?', [
+            'Gold' => false,
+            'Riot Points' => false,
+            'Blue Essence' => true,
+            'Silver' => false,
+        ]);
+        
+        $quiz_games->addQuestion('Which of the following is the highest rank in "Counter-Strike: Global Offensive"?', [
+            'Silver' => false,
+            'Gold Nova' => false,
+            'Master Guardian' => false,
+            'Global Elite' => true,
+        ]);
+        
+        $quiz_games->addQuestion('Which of these games is set in the "Mushroom Kingdom"?', [
+            'Sonic the Hedgehog' => false,
+            'Super Mario Bros.' => true,
+            'Donkey Kong Country' => false,
+            'Kirby' => false,
+        ]);
+        
+        $quiz_games->addQuestion('Who is the main antagonist in the "Metal Gear Solid" series?', [
+            'Solid Snake' => false,
+            'Liquid Snake' => true,
+            'Revolver Ocelot' => false,
+            'Big Boss' => false,
+        ]);
+        
+        $quiz_games->addQuestion('Which video game features a character named "Tom Nook"?', [
+            'Animal Crossing' => true,
+            'Harvest Moon' => false,
+            'Stardew Valley' => false,
+            'The Sims' => false,
+        ]);
+        
+        $quiz_games->addQuestion('Which game franchise includes the "Nuka-Cola" soft drink?', [
+            'Fallout' => true,
+            'Bioshock' => false,
+            'Borderlands' => false,
+            'Metro' => false,
+        ]);
+        
+        $quiz_games->addQuestion('Which game studio is responsible for creating "The Elder Scrolls" series?', [
+            'Ubisoft' => false,
+            'Bethesda' => true,
+            'BioWare' => false,
+            'Square Enix' => false,
+        ]);
+        
+
     }
 }
