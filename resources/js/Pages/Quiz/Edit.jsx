@@ -63,6 +63,11 @@ export default function Edit({ auth, quiz }) {
 
     return (
         <Layout auth={auth}>
+            <Head>
+                <title>Edit Quiz</title>
+                <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+            </Head>
+
             <div className="w-full container mx-auto flex flex-col items-center justify-center mt-10 py-8">
                 <div className="w-[90%] md:w-[75%] lg:w-[60%] bg-white rounded-xl shadow-lg p-8 border-2 border-gray-200">
                     <div className="flex justify-between items-center mb-6">
@@ -105,12 +110,13 @@ export default function Edit({ auth, quiz }) {
                                             )
                                         }
                                     />
+                                    
                                     <button
                                         type="button"
                                         className="ml-4 bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:from-red-600 hover:to-pink-600 shadow-md transition duration-300 ease-in-out transform hover:scale-105"
                                         onClick={() => deleteQuestion(qIndex)}
                                     >
-                                        Delete
+                                        <img src="/delete.svg" alt="Delete" className="w-8 h-8 inline-block" />
                                     </button>
                                 </div>
                                 <div className="grid grid-cols-2 gap-6">
