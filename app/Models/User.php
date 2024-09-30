@@ -32,7 +32,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
     /**
      * Get the attributes that should be cast.
      *

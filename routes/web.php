@@ -20,11 +20,12 @@ Route::middleware('auth')->group(function () {
 
     //CRUD
 
-    Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
+    Route::get('/quiz/create', [QuizController::class, 'create'])->name('quizzes.create');
     Route::post('/quizzes', [QuizController::class, 'store'])->name('quizzes.store');
     Route::get('/quizzes/{id}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
     Route::patch('/quizzes/{id}', [QuizController::class, 'update'])->name('quizzes.update');
     Route::delete('/quizzes/{id}', [QuizController::class, 'destroy'])->name('quizzes.destroy');
+    Route::get('/quizzes/{id}/high-scores', [QuizController::class, 'getHighScores'])->name('quizzes.high-scores');
 
 });
 

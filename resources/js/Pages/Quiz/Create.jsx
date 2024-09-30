@@ -120,26 +120,11 @@ export default function Create({ auth }) {
                                     {question.answers.map((answer, aIndex) => (
                                         <input
                                             key={aIndex}
-                                            className={`bg-gray-100 border-2 rounded-lg p-6 m-2 ${
-                                                answer.is_correct
-                                                    ? "focus:ring-green-500 focus:border-green-500 border-green-500"
-                                                    : "border-gray-200"
-                                            }`}
+                                            className={`bg-gray-100 border-2 rounded-lg p-6 m-2 ${answer.is_correct ? 'focus:ring-green-500 focus:border-green-500 border-green-500' : 'border-gray-200'}`}
                                             placeholder={`Answer ${aIndex + 1}`}
                                             value={answer.title}
-                                            onChange={(e) =>
-                                                handleAnswerChange(
-                                                    qIndex,
-                                                    aIndex,
-                                                    e.target.value
-                                                )
-                                            }
-                                            onClick={() =>
-                                                handleCorrectAnswerChange(
-                                                    qIndex,
-                                                    aIndex
-                                                )
-                                            }
+                                            onChange={(e) => handleAnswerChange(qIndex, aIndex, e.target.value)}
+                                            onClick={() => handleCorrectAnswerChange(qIndex, aIndex)}
                                         />
                                     ))}
                                 </div>

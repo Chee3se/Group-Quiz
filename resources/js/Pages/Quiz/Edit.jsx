@@ -142,19 +142,17 @@ export default function Edit({ auth, quiz }) {
                                 </div>
                             </div>
                         ))}
-
                         <button
                             type="button"
-                            className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-pink-600 shadow-md transition duration-300 ease-in-out transform hover:scale-105 mb-4"
+                            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300 mb-4"
                             onClick={addQuestion}
                         >
                             Add Question
                         </button>
-
                         <div className="text-center">
                             <button
                                 type="submit"
-                                className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-teal-600 shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
                                 disabled={processing}
                             >
                                 Update Quiz
