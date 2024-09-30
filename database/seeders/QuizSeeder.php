@@ -552,6 +552,112 @@ class QuizSeeder extends Seeder
             'Square Enix' => false,
         ]);
         
+        $quiz_scape = Quiz::create(['title' => ' Old School Rune Scape']);
+
+        $quiz_scape->addQuestion('How many subquests are there in "Recipe for Disaster"?', [
+            '7' => false,
+            '10' => false,
+            '8' => false,
+            '9' => true,
+        ]);
+
+        $quiz_scape->addQuestion('What is the drop rate for a Dragon Warhammer from Lizardman Shamans?', [
+            '1/5000' => false,
+            '1/2500' => true,
+            '1/10000' => false,
+            '1/500' => false,
+        ]);
+
+        $quiz_scape->addQuestion('At what Agility level can you use the shortcut in TzHaar city?', [
+            '81' => true,
+            '85' => false,
+            '87' => false,
+            '89' => false,
+        ]);
+
+        $quiz_scape->addQuestion('Which Barrows brother is immune to Magic attacks?', [
+            'Ahrim' => false,
+            'Torag' => false,
+            'Dharok' => false,
+            'Karil' => true,
+        ]);
+
+        $quiz_scape->addQuestion('Which of the following does NOT give you a strength bonus?', [
+            'Amulet of Strength' => false,
+            'Infernal Cape' => false,
+            'Bandos Chestplate' => false,
+            'Amulet of Glory' => true,
+        ]);
+
+        $quiz_scape->addQuestion('What is the max hit a player can achieve with full max strength gear?', [
+            '48' => false,
+            '52' => false,
+            '49' => false,
+            '51' => true,
+        ]);
+
+        $quiz_scape->addQuestion('Which ancient language did Zarosian followers speak?', [
+            'Elder Tongue' => false,
+            'Ancient Elvish' => false,
+            'Ardougnian' => false,
+            'Kharidian' => true,
+        ]);
+
+        $quiz_scape->addQuestion('How much Slayer experience do you get from killing a Nechryael?', [
+            '85' => false,
+            '90' => false,
+            '91' => true,
+            '95' => false,
+        ]);
+
+        $quiz_scape->addQuestion('What is the defense level requirement to wear Bandos armor?', [
+            '65' => false,
+            '70' => true,
+            '60' => false,
+            '75' => false,
+        ]);
+
+        $quiz_scape->addQuestion('What is the in-game name of the area where you fight Vorkath?', [
+            'Dragon Isle' => false,
+            'Fossil Island' => false,
+            'Ungael' => true,
+            'Asgarnia' => false,
+        ]);
+
+        $quiz_scape->addQuestion('Which runes are required to cast the spell Ice Barrage?', [
+            'Water, Blood, Death, Air' => false,
+            'Blood, Death, Fire, Water' => false,
+            'Blood, Death, Water' => true,
+            'Water, Death, Blood, Soul' => false,
+        ]);
+
+        $quiz_scape->addQuestion('What is the name of the mage that gives you the Ghostly Robes in the miniquest "Curse of Zaros"?', [
+            'Eblis' => false,
+            'Rasolo' => false,
+            'Dhalak' => true,
+            'Azzanadra' => false,
+        ]);
+
+        $quiz_scape->addQuestion('How many coins do you need to purchase a Dragon Scimitar from Ape Atoll?', [
+            '100k' => false,
+            '200k' => false,
+            '80k' => true,
+            '120k' => false,
+        ]);
+
+        $quiz_scape->addQuestion('What is the minimum level to enter the Warriors’ Guild?', [
+            '110' => false,
+            '100' => false,
+            '90' => true,
+            '85' => false,
+        ]);
+
+        $quiz_scape->addQuestion('Which boss drops the Zamorakian Spear?', [
+            'General Graardor' => false,
+            'Zilyana' => false,
+            'Kree\'arra' => false,
+            'K\'ril Tsutsaroth' => true,
+        ]);
 
         $quiz_fortnite = Quiz::create(['title' => 'Fortnite']);
 
