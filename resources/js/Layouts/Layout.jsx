@@ -9,7 +9,7 @@ export default function Layout({ children, role }) {
             <nav className="bg-transparent p-4 border-b border-gray-500">
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="flex items-center space-x-2">
-                        <img src="../favicon.ico" alt="Favicon" className="h-8 w-8" />
+                        <img src="/favicon.ico" alt="Favicon" className="h-8 w-8"/>
                         <div className="text-2xl font-bold">
                             <Link href="/">Quizy</Link>
                         </div>
@@ -60,7 +60,7 @@ export default function Layout({ children, role }) {
             <main>{children}</main>
 
             <div className="waves-container absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-                
+
     {/* <svg className="absolute bottom-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
 
         <path fill="#ffffff" fillOpacity="0.6" d="M0,128L40,138.7C80,149,160,171,240,176C320,181,400,171,480,144C560,117,640,75,720,64C800,53,880,75,960,106.7C1040,139,1120,181,1200,176C1280,171,1360,117,1400,90.7L1440,64L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>

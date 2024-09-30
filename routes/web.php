@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
 
     //CRUD
 
-    Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
+    Route::get('/quiz/create', [QuizController::class, 'create'])->name('quizzes.create');
     Route::post('/quizzes', [QuizController::class, 'store'])->name('quizzes.store');
     Route::get('/quizzes/{id}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
     Route::patch('/quizzes/{id}', [QuizController::class, 'update'])->name('quizzes.update');
