@@ -553,5 +553,114 @@ class QuizSeeder extends Seeder
         ]);
         
 
+        $quiz_fortnite = Quiz::create(['title' => 'Fortnite']);
+
+
+        $quiz_fortnite->addQuestion('What is the rarest rarity in Fortnite?', [
+            'Uncommon' => false,
+            'Common' => false,
+            'Legendary' => true,
+            'Rare' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('What year was Fortnite first released?', [
+            '2015' => false,
+            '2017' => true,
+            '2018' => false,
+            '2016' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('Which mode of Fortnite is the most popular?', [
+            'Save the World' => false,
+            'Battle Royale' => true,
+            'Creative' => false,
+            'Arena' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('What is the name of the virtual currency used in Fortnite?', [
+            'Gold Coins' => false,
+            'V-Bucks' => true,
+            'Fortnite Coins' => false,
+            'Power Cells' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('Which company developed Fortnite?', [
+            'EA Games' => false,
+            'Rockstar Games' => false,
+            'Epic Games' => true,
+            'Ubisoft' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('What is the maximum number of players in a standard Fortnite Battle Royale match?', [
+            '50' => false,
+            '75' => false,
+            '100' => true,
+            '120' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('What is the name of the giant storm that closes in on players during the match?', [
+            'The Maelstrom' => false,
+            'The Zone' => false,
+            'The Tempest' => false,
+            'The Storm' => true,
+        ]);
+
+        $quiz_fortnite->addQuestion('What happens when you are the last player or team standing in Fortnite Battle Royale?', [
+            'Victory Rush' => false,
+            'Battle Win' => false,
+            'Victory Royale' => true,
+            'Ultimate Champion' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('Which of these is not a named location in Fortnite?', [
+            'Tilted Towers' => false,
+            'Salty Springs' => false,
+            'Dusty Depot' => false,
+            'Rocky Mountain' => true,
+        ]);
+
+        $quiz_fortnite->addQuestion('Which of these is not a Fortnite weapon?', [
+            'Assault Rifle' => false,
+            'Boogie Bomb' => false,
+            'Chug Jug' => true, // Chug Jug is a healing item, not a weapon
+            'Peacekeeper' => true, // Not a Fortnite weapon
+        ]);
+
+        $quiz_fortnite->addQuestion('What feature allows players to build structures during a match?', [
+            'Crafting' => false,
+            'Build Mode' => true,
+            'Blueprint System' => false,
+            'Creative Construction' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('What is the term used when players jump off the Battle Bus to start the game?', [
+            'Launching' => false,
+            'Skydiving' => false,
+            'Dropping' => true,
+            'Gliding' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('In Fortnite, what is the name of the default character skin?', [
+            'John Wick' => false,
+            'Default Dan' => false,
+            'Jonesy' => true,
+            'Rex' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('Which season introduced the "Zero Point" storyline in Fortnite?', [
+            'Season 4' => false,
+            'Season 10' => false,
+            'Season X' => true,
+            'Chapter 2, Season 5' => false,
+        ]);
+
+        $quiz_fortnite->addQuestion('What kind of vehicle was added in Chapter 2, Season 3?', [
+            'Cars' => true,
+            'Boats' => false,
+            'Helicopters' => false,
+            'Jetpacks' => false,
+        ]);
+
+
     }
 }

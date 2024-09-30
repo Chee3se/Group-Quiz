@@ -1,37 +1,60 @@
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from "@inertiajs/react";
 import Layout from "@/Layouts/Layout.jsx";
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Create({ auth }) {
     const { data, setData, post, processing, errors } = useForm({
-        title: '',
-        questions: [{ title: '', answers: [{ title: '', is_correct: false }, { title: '', is_correct: false }, { title: '', is_correct: false }, { title: '', is_correct: false }] }],
+        title: "",
+        questions: [
+            {
+                title: "",
+                answers: [
+                    { title: "", is_correct: false },
+                    { title: "", is_correct: false },
+                    { title: "", is_correct: false },
+                    { title: "", is_correct: false },
+                ],
+            },
+        ],
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('quizzes.store'));
+        post(route("quizzes.store"));
     };
 
     const addQuestion = () => {
-        setData('questions', [...data.questions, { title: '', answers: [{ title: '', is_correct: false }, { title: '', is_correct: false }, { title: '', is_correct: false }, { title: '', is_correct: false }] }]);
+        setData("questions", [
+            ...data.questions,
+            {
+                title: "",
+                answers: [
+                    { title: "", is_correct: false },
+                    { title: "", is_correct: false },
+                    { title: "", is_correct: false },
+                    { title: "", is_correct: false },
+                ],
+            },
+        ]);
     };
 
     const deleteQuestion = (index) => {
-        const newQuestions = data.questions.filter((_, qIndex) => qIndex !== index);
-        setData('questions', newQuestions);
+        const newQuestions = data.questions.filter(
+            (_, qIndex) => qIndex !== index
+        );
+        setData("questions", newQuestions);
     };
 
     const handleQuestionChange = (index, value) => {
         const newQuestions = [...data.questions];
         newQuestions[index].title = value;
-        setData('questions', newQuestions);
+        setData("questions", newQuestions);
     };
 
     const handleAnswerChange = (questionIndex, answerIndex, value) => {
         const newQuestions = [...data.questions];
         newQuestions[questionIndex].answers[answerIndex].title = value;
-        setData('questions', newQuestions);
+        setData("questions", newQuestions);
     };
 
     const handleCorrectAnswerChange = (questionIndex, answerIndex) => {
@@ -39,7 +62,7 @@ export default function Create({ auth }) {
         newQuestions[questionIndex].answers.forEach((answer, idx) => {
             answer.is_correct = idx === answerIndex;
         });
-        setData('questions', newQuestions);
+        setData("questions", newQuestions);
     };
 
     return (
@@ -58,9 +81,15 @@ export default function Create({ auth }) {
                                 className="text-xl font-semibold rounded-lg w-full"
                                 placeholder="Quiz title"
                                 value={data.title}
-                                onChange={(e) => setData('title', e.target.value)}
+                                onChange={(e) =>
+                                    setData("title", e.target.value)
+                                }
                             />
-                            {errors.title && <div className="text-red-500 mt-2">{errors.title}</div>}
+                            {errors.title && (
+                                <div className="text-red-500 mt-2">
+                                    {errors.title}
+                                </div>
+                            )}
                         </div>
                         {data.questions.map((question, qIndex) => (
                             <div key={qIndex} className="mb-8">
@@ -68,9 +97,16 @@ export default function Create({ auth }) {
                                     <input
                                         type="text"
                                         className="text-xl font-semibold rounded-lg w-full"
-                                        placeholder={`Question ${qIndex + 1} title`}
+                                        placeholder={`Question ${
+                                            qIndex + 1
+                                        } title`}
                                         value={question.title}
-                                        onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
+                                        onChange={(e) =>
+                                            handleQuestionChange(
+                                                qIndex,
+                                                e.target.value
+                                            )
+                                        }
                                     />
                                     <button
                                         type="button"
