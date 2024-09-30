@@ -9,7 +9,7 @@ export default function Layout({ children, role }) {
             <nav className="bg-transparent p-4 border-b border-gray-500">
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="flex items-center space-x-2">
-                        <img src="../favicon.ico" alt="Favicon" className="h-8 w-8" />
+                        <img src="/favicon.ico" alt="Favicon" className="h-8 w-8"/>
                         <div className="text-2xl font-bold">
                             <Link href="/">Quizy</Link>
                         </div>

@@ -78,13 +78,19 @@ class QuizController extends Controller
     }
 
     // Render the form to create a new quiz
-    public function create(): Response
+    public function create(): Response | RedirectResponse
     {
+        if (auth()->user()?->getRoleNames()?->first() !== 'admin') {
+            return redirect()->route('quizzes.index');
+        }
         return Inertia::render('Quiz/Create');
     }
 
     public function store(Request $request): RedirectResponse
     {
+        if (auth()->user()?->getRoleNames()?->first() !== 'admin') {
+            return redirect()->route('quizzes.index');
+        }
         $request->validate([
             'title' => 'required|string',
             'questions' => 'required|array',
@@ -118,8 +124,12 @@ class QuizController extends Controller
 }
 
     // Render the form to edit an existing quiz
-    public function edit($id): Response
+    public function edit($id): Response | RedirectResponse
     {
+        if (auth()->user()?->getRoleNames()?->first() !== 'admin') {
+            return redirect()->route('quizzes.index');
+        }
+
         $quiz = Quiz::with(['questions.answers' => function($query) {
             $query->select('id', 'title', 'question_id', 'is_correct');
         }])->findOrFail($id);
@@ -128,6 +138,10 @@ class QuizController extends Controller
 
     public function update(Request $request, $id): RedirectResponse
     {
+        if (auth()->user()?->getRoleNames()?->first() !== 'admin') {
+            return redirect()->route('quizzes.index');
+        }
+
         $request->validate([
             'title' => 'required|string',
             'questions' => 'required|array',
@@ -166,8 +180,12 @@ class QuizController extends Controller
     }
 
     // Delete a quiz from the database
-    public function destroy($id)
+    public function destroy($id) : RedirectResponse
     {
+        if (auth()->user()?->getRoleNames()?->first() !== 'admin') {
+            return redirect()->route('quizzes.index');
+        }
+
         Quiz::destroy($id);
         return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully!');
     }

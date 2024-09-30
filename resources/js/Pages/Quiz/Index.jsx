@@ -63,19 +63,19 @@ export default function Index({ auth, quizzes }) {
                                             <>
                                                 <Link
                                                     href={route('quizzes.edit', { "id": quiz.id })}
-                                                    className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 text-center"
+                                                    className="bg-blue-500 text-white px-2 py-2 rounded-lg hover:bg-blue-600 transition duration-300 text-center"
                                                     onClick={(e) => e.stopPropagation()}  // Stop link navigation
                                                 >
-                                                    <img src="edit.svg" alt="Edit" className="w-4 h-4 inline-block" />
+                                                    <img src="edit.svg" alt="Edit" className="w-6 h-6 inline-block" />
                                                 </Link>
                                                 <button
                                                     onClick={(e) => {
                                                         e.stopPropagation(); // Prevent navigation
                                                         handleDelete(quiz.id);
                                                     }}
-                                                    className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300 text-center"
+                                                    className="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition duration-300 text-center"
                                                 >
-                                                    <img src="delete.svg" alt="Delete" className="w-4 h-4 inline-block" />
+                                                    <img src="delete.svg" alt="Delete" className="w-6 h-6 inline-block" />
                                                 </button>
                                             </>
                                         )}
@@ -87,7 +87,7 @@ export default function Index({ auth, quizzes }) {
                                             }}
                                             className="mt-2 bg-yellow-500 text-white rounded-lg p-2 hover:bg-yellow-600 transition duration-300"
                                         >
-                                            <img src="trophy.svg" alt="High Scores" className="w-4 h-4 inline-block" />
+                                            <img src="trophy.svg" alt="High Scores" className="w-6 h-6 inline-block" />
                                         </button>
                                     </div>
                                 </div>
