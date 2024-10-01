@@ -47,7 +47,7 @@ export default function Index({ auth, quizzes }) {
                     <div className="grid grid-cols-1 gap-6 mt-12">
                         {quizzes.map((quiz) => (
                             <div key={quiz.id} className="relative bg-gray-100 border-2 border-gray-200 rounded-lg p-6">
-                                <div className="flex flex-row">
+                                <div className="flex sm:flex-row flex-col items-center">
                                     <Link
                                         href={route('quizzes.show', { "id": quiz.id })}
                                         className="flex-grow transition duration-300 flex justify-between items-center"
@@ -58,12 +58,12 @@ export default function Index({ auth, quizzes }) {
                                         </div>
                                     </Link>
 
-                                    <div className="flex flex-col space-y-2">
+                                    <div className="flex flex-row sm:flex-col gap-2 space-y-2">
                                         {auth.role === 'admin' && (
                                             <>
                                                 <Link
                                                     href={route('quizzes.edit', { "id": quiz.id })}
-                                                    className="bg-blue-500 text-white px-2 py-2 rounded-lg hover:bg-blue-600 transition duration-300 text-center"
+                                                    className="bg-blue-500 text-white mt-auto p-2 rounded-lg hover:bg-blue-600 transition duration-300 text-center"
                                                     onClick={(e) => e.stopPropagation()}  // Stop link navigation
                                                 >
                                                     <img src="edit.svg" alt="Edit" className="w-6 h-6 inline-block" />
@@ -73,7 +73,7 @@ export default function Index({ auth, quizzes }) {
                                                         e.stopPropagation(); // Prevent navigation
                                                         handleDelete(quiz.id);
                                                     }}
-                                                    className="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition duration-300 text-center"
+                                                    className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition duration-300 text-center"
                                                 >
                                                     <img src="delete.svg" alt="Delete" className="w-6 h-6 inline-block" />
                                                 </button>

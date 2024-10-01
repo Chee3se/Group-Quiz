@@ -110,7 +110,7 @@ export default function Edit({ auth, quiz }) {
                                             )
                                         }
                                     />
-                                    
+
                                     <button
                                         type="button"
                                         className="ml-4 bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:from-red-600 hover:to-pink-600 shadow-md transition duration-300 ease-in-out transform hover:scale-105"
@@ -119,7 +119,7 @@ export default function Edit({ auth, quiz }) {
                                         <img src="/delete.svg" alt="Delete" className="w-8 h-8 inline-block" />
                                     </button>
                                 </div>
-                                <div className="grid grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     {question.answers.map((answer, aIndex) => (
                                         <input
                                             key={aIndex}

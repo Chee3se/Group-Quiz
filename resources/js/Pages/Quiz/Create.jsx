@@ -116,7 +116,7 @@ export default function Create({ auth }) {
                                         <img src="/delete.svg" alt="Delete" className="w-8 h-8 inline-block" />
                                     </button>
                                 </div>
-                                <div className="grid grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     {question.answers.map((answer, aIndex) => (
                                         <input
                                             key={aIndex}

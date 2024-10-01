@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Head, useForm, Link } from '@inertiajs/react';
 import Layout from "@/Layouts/Layout.jsx";
 
-export default function Show({ quiz, auth }) {
+export default function Show({ quiz, auth, incorrectAnswers }) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState([]);
     const [isQuizCompleted, setIsQuizCompleted] = useState(false);
@@ -92,7 +92,7 @@ export default function Show({ quiz, auth }) {
                                 </svg>
                                 <span className="absolute text-2xl">{`${finalScore} / ${totalQuestions}`}</span>
                             </div>
-                            <div className="mt-8">
+                            <div className="mt-8 justify-center flex flex-col gap-6 sm:flex-row">
                                 <Link
                                     href={route('quizzes.show', { id: quiz.id })}
                                     className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300"
@@ -101,7 +101,7 @@ export default function Show({ quiz, auth }) {
                                 </Link>
                                 <Link
                                     href={route('quizzes.index')}
-                                    className="bg-blue-500 text-white py-2 px-4 rounded-lg ml-4 hover:bg-blue-700 transition duration-300"
+                                    className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
                                 >
                                     Choose Another Topic
                                 </Link>
@@ -112,7 +112,7 @@ export default function Show({ quiz, auth }) {
                             <div className="text-center mb-8">
                                 <h2 className="text-xl font-semibold">{currentQuestion.title}</h2>
                             </div>
-                            <div className="grid grid-cols-2 gap-6" style={{ minHeight: '200px' }}>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" style={{ minHeight: '200px' }}>
                                 {currentQuestion.answers.map((answer) => (
                                     <button
                                         key={answer.id}

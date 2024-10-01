@@ -41,28 +41,36 @@ class QuizController extends Controller
 
         $quiz = Quiz::with('questions.answers')->findOrFail($request->quiz_id);
         $score = 0;
+        $userAnswers = $request->answers;
+        $incorrectAnswers = [];
 
-        // Calculate score based on correct answers
         foreach ($quiz->questions as $question) {
             foreach ($question->answers as $answer) {
-                if ($answer->is_correct && in_array(['question_id' => $question->id, 'answer_id' => $answer->id], $request->answers)) {
+                if ($answer->is_correct) {
+                    $correctAnswers[$question->id] = $answer->id;
+                }
+                if ($answer->is_correct && in_array(['question_id' => $question->id, 'answer_id' => $answer->id], $userAnswers)) {
                     $score++;
                 }
             }
+            if (!in_array(['question_id' => $question->id, 'answer_id' => $correctAnswers[$question->id]], $userAnswers)) {
+                $incorrectAnswers[$question->id] = [
+                    'question' => $question->title,
+                    'correct_answer' => $correctAnswers[$question->id],
+                    'user_answer' => collect($userAnswers)->firstWhere('question_id', $question->id)['answer_id'] ?? null,
+                ];
+            }
         }
 
-        // Check if the user already has a score for this quiz
         $existingScore = Score::where('quiz_id', $request->quiz_id)
             ->where('user_id', $request->user_id)
             ->first();
 
         if ($existingScore) {
-            // If the new score is higher, update the existing score
             if ($score > $existingScore->score) {
                 $existingScore->update(['score' => $score]);
             }
         } else {
-            // If no existing score, create a new score record
             Score::create([
                 'score' => $score,
                 'quiz_id' => $request->quiz_id,
@@ -74,6 +82,7 @@ class QuizController extends Controller
             'quiz' => $quiz,
             'score' => $score,
             'total' => $quiz->questions->count(),
+            'incorrectAnswers' => $incorrectAnswers,
         ]);
     }
 
